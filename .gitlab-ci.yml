@@ -1,0 +1,34 @@
+#build the service,
+    # edit the pom to add JACOCO
+   # chmod +x mvnw
+  # ./mvnw clean package
+#run SonarQube,
+  # mvn clean verify sonar:sonar
+#run the code coverage and
+
+   # mvn
+#create de Docker file
+
+image: java:8-jdk
+
+stages:
+  - Build project
+  #- Push to Docker Hub
+
+build:
+  stage: Build project
+  script:
+  - ./mvnw clean package
+
+#push:
+#  stage: Push to Docker Hub
+#  only:
+#  - master
+#  script:
+#  - echo "$REGISTRY_PASSWORD" | docker login -u "$REGISTRY_USER" --password-stdin
+#  - docker image ls
+#  - docker push $LATEST_VER && docker image rm $LATEST_VER
+#  when: manual
+
+before_script:
+  - chmod +x mvnw
